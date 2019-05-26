@@ -9,5 +9,6 @@
 - [Material library](https://docs.flutter.io/flutter/material/material-library.html)
 - [FlatButton](https://api.flutter.dev/flutter/material/FlatButton-class.html)
 - [RaisedButton](https://api.flutter.dev/flutter/material/RaisedButton-class.html)
-- [DropdownButton](https://api.flutter.dev/flutter/material/DropdownButton-class.html) 
+- [DropdownButton](https://api.flutter.dev/flutter/material/DropdownButton-class.html)
 - [TextField](https://api.flutter.dev/flutter/material/TextField/TextField.html)
+- [Checkbox](https://api.flutter.dev/flutter/material/Checkbox-class.html)

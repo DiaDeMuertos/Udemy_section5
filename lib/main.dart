@@ -27,7 +27,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _dropdownValue = 'The Matrix';
+  String dropdownValue = 'The Matrix';
+  bool isChecked = false;
 
   final TextEditingController controller = new TextEditingController();
 
@@ -38,14 +39,21 @@ class _MyHomePageState extends State<MyHomePage> {
     'The witch'
   ];
 
-  void _handlerFlatButtonClickMe() => print('clicked');
+  void handlerFlatButtonClickMe() => print('clicked');
 
-  void _handlerRaisedButtonClickMe() => _handlerFlatButtonClickMe();
+  void handlerRaisedButtonClickMe() => handlerFlatButtonClickMe();
 
-  void _handlerDropDownOnChange(String value) {
+  void handlerDropDownOnChange(String value) {
     setState(() {
-      _dropdownValue = value;
+      dropdownValue = value;
     });
+  }
+
+  void handlerCheckBoxOnChange(bool value) {
+    setState(() {
+      isChecked = value;
+    });
+    print('Checked $value');
   }
 
   @override
@@ -54,42 +62,50 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton(
-              onPressed: _handlerFlatButtonClickMe,
-              color: Colors.purple,
-              textColor: Colors.white,
-              highlightColor: Colors.black,
-              child: Text(
-                'Click Me',
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+            onPressed: handlerFlatButtonClickMe,
+            color: Colors.purple,
+            textColor: Colors.white,
+            highlightColor: Colors.black,
+            child: Text(
+              'Click Me',
+            ),
+          ),
+          RaisedButton(
+            onPressed: handlerRaisedButtonClickMe,
+            color: Colors.orange[100],
+            elevation: 5,
+            highlightElevation: 10,
+            child: Text('Click Me'),
+          ),
+          CustomCard(
+            child: DropdownButton(
+              value: dropdownValue,
+              onChanged: handlerDropDownOnChange,
+              items: buildItems(movies),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: TextField(
+              onChanged: (String value) => print('typed...$value'),
+              onSubmitted: (String value) => print('submitted'),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Checkbox(
+                value: isChecked,
+                onChanged: handlerCheckBoxOnChange,
               ),
-            ),
-            RaisedButton(
-              onPressed: _handlerRaisedButtonClickMe,
-              color: Colors.orange[100],
-              elevation: 5,
-              highlightElevation: 10,
-              child: Text('Click Me'),
-            ),
-            CustomCard(
-              child: DropdownButton(
-                value: _dropdownValue,
-                onChanged: _handlerDropDownOnChange,
-                items: buildItems(movies),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40, right: 40),
-              child: TextField(
-                onChanged: (String value) => print('typed...$value'),
-                onSubmitted: (String value) => print('submitted'),
-              ),
-            ),
-          ],
-        ),
+              Text('Done'),
+            ],
+          ),
+        ],
       ),
     );
   }
