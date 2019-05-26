@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './helpers.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,9 +27,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void handlerFlatButtonClickMe() => print('clicked');
+  String _dropdownValue = 'The Matrix';
 
-  void handlerRaisedButtonClickMe() => handlerFlatButtonClickMe();
+  final List<String> movies = [
+    'The Matrix',
+    'Children of men',
+    'Driver',
+    'The witch'
+  ];
+
+  void _handlerFlatButtonClickMe() => print('clicked');
+
+  void _handlerRaisedButtonClickMe() => _handlerFlatButtonClickMe();
+
+  void _handlerDropDownOnChange(String value) {
+    setState(() {
+      _dropdownValue = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             FlatButton(
-              onPressed: handlerFlatButtonClickMe,
+              onPressed: _handlerFlatButtonClickMe,
               color: Colors.purple,
               textColor: Colors.white,
               highlightColor: Colors.black,
@@ -49,12 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             RaisedButton(
-              onPressed: handlerRaisedButtonClickMe,
+              onPressed: _handlerRaisedButtonClickMe,
               color: Colors.orange[100],
               elevation: 5,
               highlightElevation: 10,
               child: Text('Click Me'),
-            )
+            ),
+            DropdownButton(
+              value: _dropdownValue,
+              onChanged: _handlerDropDownOnChange,
+              items: buildItems(movies),
+            ),
           ],
         ),
       ),
