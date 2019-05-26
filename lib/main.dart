@@ -29,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _dropdownValue = 'The Matrix';
 
+  final TextEditingController controller = new TextEditingController();
+
   final List<String> movies = [
     'The Matrix',
     'Children of men',
@@ -76,6 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
               value: _dropdownValue,
               onChanged: _handlerDropDownOnChange,
               items: buildItems(movies),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 40, right: 40),
+              child: TextField(
+                onChanged: (String value) => print('typed...$value'),
+                onSubmitted: (String value) => print('submitted'),
+              ),
             ),
           ],
         ),
