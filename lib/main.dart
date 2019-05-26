@@ -27,6 +27,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void handlerFlatButtonClickMe() => print('clicked');
 
+  void handlerRaisedButtonClickMe() => handlerFlatButtonClickMe();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 'Click Me',
               ),
             ),
+            RaisedButton(
+              onPressed: handlerRaisedButtonClickMe,
+              color: Colors.orange[100],
+              elevation: 5,
+              highlightElevation: 10,
+              child: Text('Click Me'),
+            )
           ],
         ),
       ),
