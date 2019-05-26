@@ -74,10 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
               highlightElevation: 10,
               child: Text('Click Me'),
             ),
-            DropdownButton(
-              value: _dropdownValue,
-              onChanged: _handlerDropDownOnChange,
-              items: buildItems(movies),
+            CustomCard(
+              child: DropdownButton(
+                value: _dropdownValue,
+                onChanged: _handlerDropDownOnChange,
+                items: buildItems(movies),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 40, right: 40),
