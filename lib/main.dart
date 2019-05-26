@@ -39,9 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
     'The witch'
   ];
 
-  void handlerFlatButtonClickMe() => print('clicked');
+  void handlerFlatButtonOnPressed() => print('clicked');
 
-  void handlerRaisedButtonClickMe() => handlerFlatButtonClickMe();
+  void handlerRaisedButtonOnPressed() => handlerFlatButtonOnPressed();
 
   void handlerDropDownOnChange(String value) {
     setState(() {
@@ -56,6 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
     print('Checked $value');
   }
 
+  void hanlderTextFieldOnChanged(String value) => print('typed...$value');
+
+  void hanlderTextFieldOnSubmitted(String value) => print('submitted');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           FlatButton(
-            onPressed: handlerFlatButtonClickMe,
+            onPressed: handlerFlatButtonOnPressed,
             color: Colors.purple,
             textColor: Colors.white,
             highlightColor: Colors.black,
@@ -75,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           RaisedButton(
-            onPressed: handlerRaisedButtonClickMe,
+            onPressed: handlerRaisedButtonOnPressed,
             color: Colors.orange[100],
             elevation: 5,
             highlightElevation: 10,
@@ -91,8 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.only(left: 40, right: 40),
             child: TextField(
-              onChanged: (String value) => print('typed...$value'),
-              onSubmitted: (String value) => print('submitted'),
+              onChanged: hanlderTextFieldOnChanged,
+              onSubmitted: hanlderTextFieldOnSubmitted,
             ),
           ),
           Row(
