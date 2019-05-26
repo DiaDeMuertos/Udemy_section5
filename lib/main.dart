@@ -25,6 +25,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void handlerFlatButtonClickMe() => print('clicked');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +37,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '',
+            FlatButton(
+              onPressed: handlerFlatButtonClickMe,
+              color: Colors.purple,
+              textColor: Colors.white,
+              highlightColor: Colors.black,
+              child: Text(
+                'Click Me',
+              ),
             ),
           ],
         ),
