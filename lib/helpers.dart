@@ -34,3 +34,76 @@ class CustomCard extends StatelessWidget {
     );
   }
 }
+
+class Radios extends StatefulWidget {
+  Radios({Key key}) : super(key: key);
+
+  @override
+  _RadiosState createState() => _RadiosState();
+}
+
+class _RadiosState extends State<Radios> {
+  int groupA = 1;
+  int groupB = 2;
+
+  void handlerGroupAOnChange(int value) {
+    setState(() {
+      groupA = value;
+    });
+  }
+
+  void handlerGroupBOnChange(int value) {
+    setState(() {
+      groupB = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Radio(
+              value: 0,
+              groupValue: groupA,
+              onChanged: handlerGroupAOnChange,
+            ),
+            Text('Si')
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Radio(
+              value: 1,
+              groupValue: groupA,
+              onChanged: handlerGroupAOnChange,
+            ),
+            Text('No')
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Radio(
+              value: 0,
+              groupValue: groupB,
+              onChanged: handlerGroupBOnChange,
+            ),
+            Text('Men')
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Radio(
+              value: 2,
+              groupValue: groupB,
+              onChanged: handlerGroupBOnChange,
+            ),
+            Text('Woman')
+          ],
+        )
+      ],
+    );
+  }
+}
