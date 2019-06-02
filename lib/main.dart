@@ -146,7 +146,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: handlerVolumeDownOnPressed,
               )
             ],
-          )
+          ),
+          SizedBox(
+            height: 50,
+            child: ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FlatButton(
+                  child: Text('GO'),
+                  onPressed: () {},
+                ),
+                RaisedButton(
+                  child: Text('GO'),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(0),
+                  icon: Icon(Icons.done),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
