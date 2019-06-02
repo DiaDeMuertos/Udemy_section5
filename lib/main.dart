@@ -31,6 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isChecked = false;
   int groupA = 1;
   int groupB = 2;
+  int volume = 0;
 
   final TextEditingController controller = new TextEditingController();
 
@@ -61,6 +62,18 @@ class _MyHomePageState extends State<MyHomePage> {
   void hanlderTextFieldOnChanged(String value) => print('typed...$value');
 
   void hanlderTextFieldOnSubmitted(String value) => print('submitted');
+
+  void handlerVolumeUpOnPressed() {
+    setState(() {
+      volume = volume + 1;
+    });
+  }
+
+  void handlerVolumeDownOnPressed() {
+    setState(() {
+      volume = volume - 1 < 0 ? 0 : volume - 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +131,22 @@ class _MyHomePageState extends State<MyHomePage> {
               menuPlaces(),
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.volume_up),
+                tooltip: 'Up the volume',
+                onPressed: handlerVolumeUpOnPressed,
+              ),
+              Text(volume.toString()),
+              IconButton(
+                icon: Icon(Icons.volume_down),
+                tooltip: 'Down the volume',
+                onPressed: handlerVolumeDownOnPressed,
+              )
+            ],
+          )
         ],
       ),
     );
