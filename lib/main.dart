@@ -29,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String dropdownValue = 'The Matrix';
   bool isChecked = false;
+  int groupA = 1;
+  int groupB = 2;
 
   final TextEditingController controller = new TextEditingController();
 
@@ -109,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Text('Done'),
             ],
           ),
+          Radios()
         ],
       ),
     );
