@@ -111,7 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Text('Done'),
             ],
           ),
-          Radios()
+          Radios(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              menuPlaces(),
+            ],
+          ),
         ],
       ),
     );
