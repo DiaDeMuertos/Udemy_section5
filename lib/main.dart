@@ -169,6 +169,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+          FloatingActionButton(
+            child: Icon(Icons.phone),
+            mini: true,
+            onPressed: () => {},
+          ),
         ],
       ),
     );
