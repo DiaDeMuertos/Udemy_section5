@@ -107,3 +107,26 @@ class _RadiosState extends State<Radios> {
     );
   }
 }
+
+enum Places { a, b, c }
+
+Widget menuPlaces() {
+  return PopupMenuButton(
+    icon: Icon(Icons.menu),
+    itemBuilder: (BuildContext context) => [
+          PopupMenuItem(
+            value: Places.a,
+            child: Text('A'),
+          ),
+          PopupMenuItem(
+            value: Places.b,
+            child: Text('B'),
+          ),
+          PopupMenuItem(
+            value: Places.c,
+            child: Text('C'),
+          )
+        ],
+    onSelected: (Places result) => print(result),
+  );
+}
