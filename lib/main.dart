@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import './helpers.dart';
@@ -34,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int volume = 0;
   bool state = false;
   double minutes = 0;
+  DateTime dateNow = DateTime.now();
 
   final TextEditingController controller = new TextEditingController();
 
@@ -89,118 +92,146 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future selectedDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: dateNow,
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2020),
+    );
+
+    if (picked != null && picked != dateNow) {
+      print(dateNow.toString());
+      setState(() {
+        dateNow = picked;
+      });
+    }
+  }
+
+  Function handlerSelectDateOnPressed(BuildContext context) {
+    return () => selectedDate(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
         children: <Widget>[
-          FlatButton(
-            onPressed: handlerFlatButtonOnPressed,
-            color: Colors.purple,
-            textColor: Colors.white,
-            highlightColor: Colors.black,
-            child: Text(
-              'Click Me',
-            ),
-          ),
-          RaisedButton(
-            onPressed: handlerRaisedButtonOnPressed,
-            color: Colors.orange[100],
-            elevation: 5,
-            highlightElevation: 10,
-            child: Text('Click Me'),
-          ),
-          CustomCard(
-            child: DropdownButton(
-              value: dropdownValue,
-              onChanged: handlerDropDownOnChange,
-              items: buildItems(movies),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40, right: 40),
-            child: TextField(
-              onChanged: hanlderTextFieldOnChanged,
-              onSubmitted: hanlderTextFieldOnSubmitted,
-            ),
-          ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Checkbox(
-                value: isChecked,
-                onChanged: handlerCheckBoxOnChange,
-              ),
-              Text('Done'),
-            ],
-          ),
-          Radios(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              menuPlaces(),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.volume_up),
-                tooltip: 'Up the volume',
-                onPressed: handlerVolumeUpOnPressed,
-              ),
-              Text(volume.toString()),
-              IconButton(
-                icon: Icon(Icons.volume_down),
-                tooltip: 'Down the volume',
-                onPressed: handlerVolumeDownOnPressed,
-              )
-            ],
-          ),
-          SizedBox(
-            height: 50,
-            child: ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: <Widget>[
-                FlatButton(
-                  child: Text('GO'),
-                  onPressed: () {},
+              FlatButton(
+                onPressed: handlerFlatButtonOnPressed,
+                color: Colors.purple,
+                textColor: Colors.white,
+                highlightColor: Colors.black,
+                child: Text(
+                  'Click Me',
                 ),
-                RaisedButton(
-                  child: Text('GO'),
-                  onPressed: () {},
+              ),
+              RaisedButton(
+                onPressed: handlerRaisedButtonOnPressed,
+                color: Colors.orange[100],
+                elevation: 5,
+                highlightElevation: 10,
+                child: Text('Click Me'),
+              ),
+              CustomCard(
+                child: DropdownButton(
+                  value: dropdownValue,
+                  onChanged: handlerDropDownOnChange,
+                  items: buildItems(movies),
                 ),
-                IconButton(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(0),
-                  icon: Icon(Icons.done),
-                  onPressed: () {},
-                )
-              ],
-            ),
-          ),
-          FloatingActionButton(
-            child: Icon(Icons.phone),
-            mini: true,
-            onPressed: () => {},
-          ),
-          Switch(
-            value: state,
-            onChanged: handlerSwitchOnChange,
-            activeColor: Colors.red,
-            activeThumbImage: AssetImage('assets/images/skull_tattoo.png'),
-          ),
-          Slider(
-            label: minutes.toString(),
-            value: minutes,
-            divisions: 10,
-            min: 0,
-            max: 60,
-            onChanged: handlerSliderOnChange,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 40, right: 40),
+                child: TextField(
+                  onChanged: hanlderTextFieldOnChanged,
+                  onSubmitted: hanlderTextFieldOnSubmitted,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Checkbox(
+                    value: isChecked,
+                    onChanged: handlerCheckBoxOnChange,
+                  ),
+                  Text('Done'),
+                ],
+              ),
+              Radios(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  menuPlaces(),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.volume_up),
+                    tooltip: 'Up the volume',
+                    onPressed: handlerVolumeUpOnPressed,
+                  ),
+                  Text(volume.toString()),
+                  IconButton(
+                    icon: Icon(Icons.volume_down),
+                    tooltip: 'Down the volume',
+                    onPressed: handlerVolumeDownOnPressed,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 50,
+                child: ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text('GO'),
+                      onPressed: () {},
+                    ),
+                    RaisedButton(
+                      child: Text('GO'),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(0),
+                      icon: Icon(Icons.done),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              ),
+              FloatingActionButton(
+                child: Icon(Icons.phone),
+                mini: true,
+                onPressed: () => {},
+              ),
+              Switch(
+                value: state,
+                onChanged: handlerSwitchOnChange,
+                activeColor: Colors.red,
+                activeThumbImage: AssetImage('assets/images/skull_tattoo.png'),
+              ),
+              Slider(
+                label: minutes.toString(),
+                value: minutes,
+                divisions: 10,
+                min: 0,
+                max: 60,
+                onChanged: handlerSliderOnChange,
+              ),
+              IconButton(
+                icon: Icon(Icons.alarm),
+                onPressed: handlerSelectDateOnPressed(context),
+              ),
+            ],
           ),
         ],
       ),
