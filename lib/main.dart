@@ -29,10 +29,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String dropdownValue = 'The Matrix';
   bool isChecked = false;
-  bool state = false;
   int groupA = 1;
   int groupB = 2;
   int volume = 0;
+  bool state = false;
+  double minutes = 0;
 
   final TextEditingController controller = new TextEditingController();
 
@@ -79,6 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void handlerSwitchOnChange(bool newState) {
     setState(() {
       state = newState;
+    });
+  }
+
+  void handlerSliderOnChange(double newValue) {
+    setState(() {
+      minutes = newValue;
     });
   }
 
@@ -186,6 +193,14 @@ class _MyHomePageState extends State<MyHomePage> {
             onChanged: handlerSwitchOnChange,
             activeColor: Colors.red,
             activeThumbImage: AssetImage('assets/images/skull_tattoo.png'),
+          ),
+          Slider(
+            label: minutes.toString(),
+            value: minutes,
+            divisions: 10,
+            min: 0,
+            max: 60,
+            onChanged: handlerSliderOnChange,
           ),
         ],
       ),
