@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String dropdownValue = 'The Matrix';
   bool isChecked = false;
+  bool state = false;
   int groupA = 1;
   int groupB = 2;
   int volume = 0;
@@ -72,6 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void handlerVolumeDownOnPressed() {
     setState(() {
       volume = volume - 1 < 0 ? 0 : volume - 1;
+    });
+  }
+
+  void handlerSwitchOnChange(bool newState) {
+    setState(() {
+      state = newState;
     });
   }
 
@@ -173,6 +180,12 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Icon(Icons.phone),
             mini: true,
             onPressed: () => {},
+          ),
+          Switch(
+            value: state,
+            onChanged: handlerSwitchOnChange,
+            activeColor: Colors.red,
+            activeThumbImage: AssetImage('assets/images/skull_tattoo.png'),
           ),
         ],
       ),
