@@ -37,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool state = false;
   double minutes = 0;
   DateTime dateNow = DateTime.now();
+  TimeOfDay timeNow = TimeOfDay.now();
 
   final TextEditingController controller = new TextEditingController();
 
@@ -110,6 +111,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Function handlerSelectDateOnPressed(BuildContext context) {
     return () => selectedDate(context);
+  }
+
+  Future selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: timeNow,
+    );
+
+    if (picked != null && picked != timeNow) {
+      print(timeNow.toString());
+      setState(() {
+        timeNow = picked;
+      });
+    }
+  }
+
+  Function handlerSelectTimeOnPressed(BuildContext context) {
+    return () => selectTime(context);
   }
 
   @override
@@ -228,9 +247,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: handlerSliderOnChange,
               ),
               IconButton(
-                icon: Icon(Icons.alarm),
+                icon: Icon(Icons.date_range),
                 onPressed: handlerSelectDateOnPressed(context),
               ),
+              IconButton(
+                icon: Icon(Icons.timer),
+                onPressed: handlerSelectTimeOnPressed(context),
+              )
             ],
           ),
         ],
