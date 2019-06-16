@@ -18,3 +18,4 @@
 - [ButtonBar](https://api.flutter.dev/flutter/material/ButtonBar-class.html)
 - [FloatingActionButton](https://api.flutter.dev/flutter/material/FloatingActionButton-class.html)
 - [Switch](https://api.flutter.dev/flutter/material/Switch/Switch.html)
+- [Slider](https://api.flutter.dev/flutter/material/Slider/Slider.html)
