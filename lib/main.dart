@@ -28,6 +28,8 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+enum Movies { CaptainMarvel, Shazam }
+
 class _MyHomePageState extends State<MyHomePage> {
   String dropdownValue = 'The Matrix';
   bool isChecked = false;
@@ -129,6 +131,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Function handlerSelectTimeOnPressed(BuildContext context) {
     return () => selectTime(context);
+  }
+
+  Future openDialog(BuildContext context) async {
+    switch (await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Text('Select A Movie'),
+            children: <Widget>[
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context, Movies.CaptainMarvel);
+                },
+                child: Text('Capitain Marvel'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context, Movies.Shazam);
+                },
+                child: Text('Shazam'),
+              ),
+            ],
+          );
+        })) {
+      case Movies.CaptainMarvel:
+        print('Captain Marvel');
+        print(Movies);
+        break;
+      case Movies.Shazam:
+        print('Shazam');
+        break;
+    }
+  }
+
+  Function handlerOpenDialogOnPressed(BuildContext context) {
+    return () => openDialog(context);
   }
 
   @override
@@ -253,6 +291,10 @@ class _MyHomePageState extends State<MyHomePage> {
               IconButton(
                 icon: Icon(Icons.timer),
                 onPressed: handlerSelectTimeOnPressed(context),
+              ),
+              IconButton(
+                icon: Icon(Icons.movie),
+                onPressed: handlerOpenDialogOnPressed(context),
               )
             ],
           ),
