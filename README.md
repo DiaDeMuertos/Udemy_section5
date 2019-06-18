@@ -20,4 +20,7 @@
 - [Switch](https://api.flutter.dev/flutter/material/Switch/Switch.html)
 - [Slider](https://api.flutter.dev/flutter/material/Slider/Slider.html)
 - [ShowDatePicker](https://api.flutter.dev/flutter/material/showDatePicker.html)
-- [showTimePicker](https://api.flutter.dev/flutter/material/showTimePicker.html)
+- [ShowTimePicker](https://api.flutter.dev/flutter/material/showTimePicker.html)
+- [ShowDialog](https://api.flutter.dev/flutter/material/showDialog.html)
+- [SimpleDialog](https://api.flutter.dev/flutter/material/SimpleDialog-class.html)
+- [SimpleDialogOption](https://api.flutter.dev/flutter/material/SimpleDialogOption-class.html)
