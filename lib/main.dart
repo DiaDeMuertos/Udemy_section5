@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Future selectedDate(BuildContext context) async {
+  Future<void> selectedDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: dateNow,
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return () => selectedDate(context);
   }
 
-  Future selectTime(BuildContext context) async {
+  Future<void> selectTime(BuildContext context) async {
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: timeNow,
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return () => selectTime(context);
   }
 
-  Future openDialog(BuildContext context) async {
+  Future<void> openDialog(BuildContext context) async {
     switch (await showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -169,6 +169,36 @@ class _MyHomePageState extends State<MyHomePage> {
     return () => openDialog(context);
   }
 
+  Future<void> openAlert(BuildContext context) async {
+    await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Phone Alert'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('Your Phone us too hot!!!!'),
+                  Text('Put it in Water :D'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              RaisedButton(
+                child: Text('Continue'),
+                textColor: Colors.white,
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            ],
+          );
+        });
+  }
+
+  Function handlerOpenAlertOnPressed(BuildContext context) {
+    return () => openAlert(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,9 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.purple,
                 textColor: Colors.white,
                 highlightColor: Colors.black,
-                child: Text(
-                  'Click Me',
-                ),
+                child: Text('Click Me'),
               ),
               RaisedButton(
                 onPressed: handlerRaisedButtonOnPressed,
@@ -295,6 +323,10 @@ class _MyHomePageState extends State<MyHomePage> {
               IconButton(
                 icon: Icon(Icons.movie),
                 onPressed: handlerOpenDialogOnPressed(context),
+              ),
+              IconButton(
+                icon: Icon(Icons.add_alarm),
+                onPressed: handlerOpenAlertOnPressed(context),
               )
             ],
           ),
