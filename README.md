@@ -25,3 +25,4 @@
 - [SimpleDialog](https://api.flutter.dev/flutter/material/SimpleDialog-class.html)
 - [SimpleDialogOption](https://api.flutter.dev/flutter/material/SimpleDialogOption-class.html)
 - [AlertDialog](https://api.flutter.dev/flutter/material/AlertDialog-class.html)
+- [BottomSheet](https://api.flutter.dev/flutter/material/BottomSheet-class.html)

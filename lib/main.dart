@@ -199,6 +199,41 @@ class _MyHomePageState extends State<MyHomePage> {
     return () => openAlert(context);
   }
 
+  Function handlerCloseModal(String value) {
+    return () {
+      print('$value...');
+      Navigator.of(context).pop();
+    };
+  }
+
+  Future<void> openBottomSheet(BuildContext context) async{
+    await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          child: Wrap(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.alarm),
+                title: Text('Alarm'),
+                onTap: handlerCloseModal('Alarm...'),
+              ),
+              ListTile(
+                leading: Icon(Icons.map),
+                title: Text('Map'),
+                onTap: handlerCloseModal('Map...'),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Function handlerOpenBottomSheetOnPressed(BuildContext context) {
+    return () => openBottomSheet(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -327,6 +362,10 @@ class _MyHomePageState extends State<MyHomePage> {
               IconButton(
                 icon: Icon(Icons.add_alarm),
                 onPressed: handlerOpenAlertOnPressed(context),
+              ),
+              IconButton(
+                icon: Icon(Icons.open_in_new),
+                onPressed: handlerOpenBottomSheetOnPressed(context),
               )
             ],
           ),
