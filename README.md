@@ -24,3 +24,4 @@
 - [ShowDialog](https://api.flutter.dev/flutter/material/showDialog.html)
 - [SimpleDialog](https://api.flutter.dev/flutter/material/SimpleDialog-class.html)
 - [SimpleDialogOption](https://api.flutter.dev/flutter/material/SimpleDialogOption-class.html)
+- [AlertDialog](https://api.flutter.dev/flutter/material/AlertDialog-class.html)
