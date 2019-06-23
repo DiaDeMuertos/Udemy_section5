@@ -40,6 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
   double minutes = 0;
   DateTime dateNow = DateTime.now();
   TimeOfDay timeNow = TimeOfDay.now();
+  List<MyItem> items = <MyItem>[
+    MyItem(header: 'Header1', body: 'Body1'),
+    MyItem(header: 'Header2', body: 'Body2'),
+  ];
 
   final TextEditingController controller = new TextEditingController();
 
@@ -206,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
     };
   }
 
-  Future<void> openBottomSheet(BuildContext context) async{
+  Future<void> openBottomSheet(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -366,7 +370,30 @@ class _MyHomePageState extends State<MyHomePage> {
               IconButton(
                 icon: Icon(Icons.open_in_new),
                 onPressed: handlerOpenBottomSheetOnPressed(context),
-              )
+              ),
+              ExpansionPanelList(
+                expansionCallback: (int index, bool isExpanded) {
+                  setState(() {
+                    items[index].isExpanded = !items[index].isExpanded;
+                  });
+                },
+                children: items.map((MyItem item) {
+                  return ExpansionPanel(
+                    headerBuilder: (BuildContext context, bool isExpanded) {
+                      return Container(
+                        child: Text(item.header),
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 8),
+                      );
+                    },
+                    isExpanded: item.isExpanded,
+                    body: Container(
+                      child: Text(item.body),
+                      padding: EdgeInsets.only(top: 8, bottom: 8),
+                    ),
+                  );
+                }).toList(),
+              ),
             ],
           ),
         ],
