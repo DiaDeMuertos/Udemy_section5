@@ -130,3 +130,11 @@ Widget menuPlaces() {
     onSelected: (Places result) => print(result),
   );
 }
+
+class MyItem {
+  MyItem({this.isExpanded: false, this.header, this.body});
+
+  bool isExpanded;
+  final String header;
+  final String body;
+}
