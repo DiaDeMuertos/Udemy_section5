@@ -31,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 enum Movies { CaptainMarvel, Shazam }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _scaffold = GlobalKey<ScaffoldState>();
+
   String dropdownValue = 'The Matrix';
   bool isChecked = false;
   int groupA = 1;
@@ -241,6 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffold,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -393,6 +396,25 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 }).toList(),
+              ),
+              SizedBox(
+                height: 25,
+                child: RaisedButton(
+                  child: Text('Click Me'),
+                  onPressed: () {
+                    SnackBar snackBar = SnackBar(
+                      content: Text('OK'),
+                      duration: Duration(seconds:4),
+                      action: SnackBarAction(
+                        label: 'Order',
+                        onPressed: () {
+                          print('Pizza is on it way - \$9.99');
+                        },
+                      ),
+                    );
+                    _scaffold.currentState.showSnackBar(snackBar);
+                  },
+                ),
               ),
             ],
           ),
