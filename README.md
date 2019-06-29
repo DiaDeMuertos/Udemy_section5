@@ -27,3 +27,4 @@
 - [AlertDialog](https://api.flutter.dev/flutter/material/AlertDialog-class.html)
 - [BottomSheet](https://api.flutter.dev/flutter/material/BottomSheet-class.html)
 - [ExpansionPanel](https://api.flutter.dev/flutter/material/ExpansionPanel-class.html)
+- [SnackBar](https://api.flutter.dev/flutter/material/SnackBar-class.html)
